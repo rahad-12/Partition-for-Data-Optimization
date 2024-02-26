@@ -9,12 +9,14 @@ class MemberUserService extends AbstractServices {
 
   // get user
   public async getUser(req: Request) {
-    try {
-      const data = await this.db("user").withSchema("test").select("*");
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
+    const data = await this.db("user").withSchema("test").select("*");
+    if (!data) throw new Error("Data is not fetching");
+
+    return {
+      success: true,
+      code: this.StatusCode.HTTP_OK,
+      data: data,
+    };
   }
 }
 

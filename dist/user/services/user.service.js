@@ -20,13 +20,14 @@ class MemberUserService extends abstract_service_1.default {
     // get user
     getUser(req) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const data = yield this.db("user").withSchema("test").select("*");
-                return data;
-            }
-            catch (e) {
-                console.log(e);
-            }
+            const data = yield this.db("user").withSchema("test").select("*");
+            if (!data)
+                throw new Error("Data is not fetching");
+            return {
+                success: true,
+                code: this.StatusCode.HTTP_OK,
+                data: data,
+            };
         });
     }
 }
