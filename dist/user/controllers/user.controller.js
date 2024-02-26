@@ -18,9 +18,13 @@ class Userontroller {
         this.MemberUserService = new user_service_1.default();
         // get user
         this.getUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.MemberUserService.getUser(req);
-            res.json(user);
-            res.send("success");
+            try {
+                const user = yield this.MemberUserService.getUser(req);
+                res.json(user);
+            }
+            catch (e) {
+                console.log(e);
+            }
         });
     }
 }

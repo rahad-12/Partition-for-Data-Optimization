@@ -6,11 +6,14 @@ class Userontroller {
 
   // get user
   public getUser = async (req: Request, res: Response) => {
-    const user = await this.MemberUserService.getUser(req);
+    try {
+      const user = await this.MemberUserService.getUser(req);
 
     res.json(user);
-    res.send("success");
-  };
+    } catch(e) {
+      console.log(e)
+    }
+  } 
 }
 
 export default Userontroller;
