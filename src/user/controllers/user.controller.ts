@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import MemberUserService from "../services/user.service";
+import AbstractServices from "../../abstract/abstract.service";
 
-class Userontroller {
+class Userontroller extends AbstractServices {
   private MemberUserService = new MemberUserService();
 
   // get user
@@ -10,8 +11,12 @@ class Userontroller {
       const { code, ...data } = await this.MemberUserService.getUser(req);
 
       res.status(code).json(data);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.error("Error in getUser controller:", error);
+      res.status(this.StatusCode.HTTP_INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: "Internal Server Error",
+      });
     }
   };
 }

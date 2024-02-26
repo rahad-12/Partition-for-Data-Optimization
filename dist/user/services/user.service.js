@@ -20,9 +20,19 @@ class MemberUserService extends abstract_service_1.default {
     // get user
     getUser(req) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield this.db("user").withSchema("test").select("*");
-            if (!data)
-                throw new Error("Data is not fetching");
+            const { limit = 10, skip = 0, age } = req.query;
+            // Build the query in user partition not the base table
+            let query = this.db("user_partitioned")
+                .withSchema("test")
+                .select("id", "name", "age");
+            // Add condition to filter by age if provided
+            if (age) {
+                query = query.where({ age });
+            }
+            // Apply pagination
+            query = query.limit(Number(limit)).offset(Number(skip));
+            // Execute the query
+            const data = yield query;
             return {
                 success: true,
                 code: this.StatusCode.HTTP_OK,

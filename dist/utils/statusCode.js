@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class StatusCode {
-}
+class StatusCode {}
 StatusCode.HTTP_OK = 200;
 StatusCode.HTTP_SUCCESSFUL = 201;
 StatusCode.HTTP_ACCEPTED = 202;
