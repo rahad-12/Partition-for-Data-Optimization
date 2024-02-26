@@ -14,7 +14,7 @@
     "dev:docker:rebuild": "docker-compose --file docker-compose.dev.yml build --no-cache"
   },
   "keywords": [],
-  "author": "",
+  "author": "Shidul Islam Rahad",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.21",

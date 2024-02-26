@@ -1,15 +1,7 @@
-import express from "express";
-import path from "path";
-import http from "http";
+import App from "./app/app";
+import config from "./config/config";
 
-const app = express();
-const expressServer = http.createServer(app);
-const port = 3001;
+const app = new App(config.PORT);
+app.startServer();
 
-app.get("/", (req, res) => {
-  res.send("send");
-});
-
-expressServer.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+export default app.app;

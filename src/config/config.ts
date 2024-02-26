@@ -35,7 +35,7 @@ const getConfig = (): ENV => {
     DB_PASS: process.env.DB_PASS,
     DB_HOST: process.env.DB_HOST,
     DB_PORT: process.env.DB_PORT,
-    JWT_SECRET: process.env.JWT_SECRET_ADMIN,
+    JWT_SECRET: process.env.JWT_SECRET,
   };
 };
 
